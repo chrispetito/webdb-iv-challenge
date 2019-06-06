@@ -1,9 +1,25 @@
-const db = require('../dbconfig')
+const db = require("../dbconfig");
 
 module.exports = {
-    getDishes
-}
+  getDishes,
+  getDish,
+  addDish
+};
 
 function getDishes() {
-    return db('dishes')
+  return db("dishes");
+}
+
+function getDish(id) {
+  return db("dishes")
+    .where({ id })
+    .first();
+}
+
+function addDish(dish) {
+  return db("dishes")
+    .insert(dish)
+    .then(dish => {
+      return getDishes(dish[0]);
+    });
 }
