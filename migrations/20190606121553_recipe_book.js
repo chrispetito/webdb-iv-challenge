@@ -3,19 +3,19 @@ exports.up = function(knex, Promise) {
     .createTable("dishes", function(table) {
       table.increments();
       table
-        .string("name")
+        .string("name", 128)
         .notNullable()
         .unique();
     })
     .createTable("recipes", function(table) {
       table.increments();
       table
-        .string("name")
+        .string("name", 128)
         .notNullable()
         .unique();
       table
         .integer("dishes_id")
-        .notNullable()
+        .notNullable() 
         .unsigned()
         .references("id")
         .inTable("dishes")
@@ -24,7 +24,7 @@ exports.up = function(knex, Promise) {
     })
     .createTable("ingredients", function(table) {
       table.increments();
-      table.string("name").notNullable();
+      table.string("name", 128).notNullable();
     })
     .createTable("recipes_ingredients", function(table) {
       table.increments();

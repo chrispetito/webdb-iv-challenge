@@ -12,7 +12,4 @@ function getRecipes() {
 function addRecipe(recipe) {
     return db('recipes')
     .insert(recipe)
-    .then(recipe => {
-        return recipe.id;
-    })
 }

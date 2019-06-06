@@ -13,8 +13,15 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
-  db.getDish(req.params.id)
+router.get('/:id', (req, res) => {
+    db.getDish(req.params.id)
+    .then(dish => {
+        res.status(200).json(dish)
+    })
+})
+
+router.get("/:id/recipes", (req, res) => {
+  db.getDishRecipes(req.params.id)
     .then(dish => {
       if (dish) {
         res.status(200).json(dish);
