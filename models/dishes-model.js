@@ -12,19 +12,28 @@ function getDishes() {
 }
 
 function getDish(id) {
-    return db('dishes')
+  return db("dishes")
     .where({ id })
-    .first()
+    .first();
+}
+async function getDish(id) {
+  const dish = await db("dishes")
+    .where({ id })
+    .first();
+  const recipes = await db("dishes")
+    .join("recipes", "recipes.dishes_id", "dishes.id")
+    .where("dishes.id", id);
+  // console.log(recipes)
+  return { ...dish, recipes };
 }
 
 function getDishRecipes(id) {
-  return db("recipes")
-    .join('dishes', 'dishes.id', 'recipes.dishes_id')
-    .select('recipes.id', 'recipes.name')
-    .where('recipes.dishes_id', id)
+  const recipes = db("dishes")
+    .join("recipes", "recipes.dishes_id", "dishes.id")
+    .where("dishes.id", id);
+  return recipes;
 }
 
 function addDish(dish) {
-  return db("dishes")
-    .insert(dish)
+  return db("dishes").insert(dish);
 }

@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
         .unique();
       table
         .integer("dishes_id")
-        .notNullable() 
+        .notNullable()
         .unsigned()
         .references("id")
         .inTable("dishes")
@@ -44,6 +44,7 @@ exports.up = function(knex, Promise) {
         .inTable("ingredients")
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
+      table.integer("quantity").notNullable();
     });
 };
 

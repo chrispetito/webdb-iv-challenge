@@ -6,7 +6,7 @@ module.exports = {
 };
 
 function getRecipes() {
-  return db("recipes");
+  return db("recipes")
 }
 
 function addRecipe(recipe) {
