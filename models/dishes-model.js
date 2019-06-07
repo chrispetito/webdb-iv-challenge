@@ -11,11 +11,6 @@ function getDishes() {
   return db("dishes");
 }
 
-function getDish(id) {
-  return db("dishes")
-    .where({ id })
-    .first();
-}
 async function getDish(id) {
   const dish = await db("dishes")
     .where({ id })
